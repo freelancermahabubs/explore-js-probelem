@@ -195,12 +195,55 @@ console.log(output);
 //   console.log(sum);
 // }
 
-function isPrime(num) {
-  // if (num <= 1) return false;
-  for (let i = 2; i < num; i++) {
-    if (num % i === 0) return false;
+// function isPrime(num) {
+
+//   for (let i = 3; i < num.length; i++) {
+//     if (num % i === 0) return false;
+
+//   }
+//   return true;
+// }
+// const primeNum = isPrime(1);
+// console.log(primeNum);
+
+// function triangleArea(a, b, c) {
+  
+// }
+
+/* 
+1. if ticket numbers is less than 100, per ticket price: 100
+2. if ticket numbers is more than 100, but less than 200. First 100 tickets will be 100/ taka kore. rest tickets will be 90 taka per piece.
+first 100 ---> 100taka
+rest ---> 90taka
+3.if you purchase more than 200 tickets
+first ---> 100tka
+101-200 ---> 90tka
+200+ ---> 70taka
+*/
+
+function ticketPrice(ticketQuantity) {
+  const first100Rate = 100;
+  const second100Rate = 90;
+  const restTicketRate = 70;
+  if(ticketQuantity <= 100) {
+    const price = ticketQuantity * first100Rate;
+    return price;
   }
-  return true;
+  else if(ticketQuantity <= 200) {
+    const first100Price = 100 * first100Rate;
+    const restTicketQuantity = ticketQuantity - 100;
+    const restTicketPrice = restTicketQuantity * second100Rate;
+    const totalPrice = restTicketPrice + first100Price;
+    return totalPrice;
+  }
+  else{
+    const first100Price = 100 * first100Rate;
+    const second100Price = 100 * second100Rate;
+    const restTicketQuantity = ticketQuantity - 200;
+    const restTicketPrice = restTicketQuantity * restTicketRate;
+    const totalCost = first100Price + second100Price + restTicketPrice;
+    return totalCost;
+  }
 }
-const primeNum = isPrime(9);
-console.log(primeNum);
+const price = ticketPrice(201)
+console.log(price);
